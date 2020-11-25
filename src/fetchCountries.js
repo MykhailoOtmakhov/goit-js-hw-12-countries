@@ -1,4 +1,6 @@
 export default 
-const fetchCountries = fetch('https://restcountries.eu/rest/v2/name/ukraine?fullText=true')
-console.log(fetchCountries)
-// https://restcountries.eu/rest/v2/name/{name}?fullText=true
+function fetchCountry (name){
+    const url = `https://restcountries.eu/rest/v2/name/${name}`;
+    return fetch(url)
+    .then(response=>response.json());
+}

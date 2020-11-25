@@ -1,12 +1,13 @@
 import './styles.css';
 import countryCardTpl from './tamplates/country-card.hbs';
 import countryListTpl from './tamplates/country-list.hbs';
+// import fetchCountry from './fetchCountries.js';
 import { alert, error} from'@pnotify/core';
 import"@pnotify/core/dist/PNotify.css";
 import"@pnotify/core/dist/BrightTheme.css";
 
 const debounce = require('lodash.debounce');
-const messageNotification = 'Too many matchws found. Please enter a nore specific query!'
+const messageNotification = 'Too many matches found. Please enter a more specific query!'
 const refs ={
     cardContainer: document.querySelector('.js-card-container'),
     queryText: document.querySelector('.query-text')
