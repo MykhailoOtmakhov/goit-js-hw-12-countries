@@ -1,7 +1,7 @@
 import './styles.css';
 import countryCardTpl from './tamplates/country-card.hbs';
 import countryListTpl from './tamplates/country-list.hbs';
-// import fetchCountry from './fetchCountries.js';
+import fetchCountry from './js/fetchCountries.js';
 import { alert, error} from'@pnotify/core';
 import"@pnotify/core/dist/PNotify.css";
 import"@pnotify/core/dist/BrightTheme.css";
@@ -14,22 +14,15 @@ const refs ={
 } 
 
 refs.queryText.addEventListener('input',debounce(onSearch,500))
+refs.queryText.value = ""
 
 function onSearch (e) {
         e.preventDefault();
         const searchQuery = e.target.value.trim();
-        refs.queryText.value = ""
         fetchCountry (searchQuery)
             .then(pushNotification)
-            .catch() //что добавить?
-            // .finally(()=>refs.queryText.value="")
+            .catch(onFetchError) 
     }
-
-function fetchCountry (name){
-    const url = `https://restcountries.eu/rest/v2/name/${name}`;
-    return fetch(url)
-    .then(response=>response.json());
-}
 
 function renderCountryCard (country){
     const markup = countryCardTpl(country);
@@ -41,10 +34,9 @@ function renderCountryList(country){
     refs.cardContainer.innerHTML = listMarkup;
 }
 
-// function onFetchError(error) {
-//     alert ('No county');
-// }
-
+function onFetchError(error) {
+    alert ('No county');
+}
 
 function alertNotification(err){
 error ({
@@ -62,6 +54,3 @@ function pushNotification (data){
     return renderCountryList(data)
 }
     
-// function clearCardContainer(){
-//     refs.cardContainer.innerHTML = ''
-// }
