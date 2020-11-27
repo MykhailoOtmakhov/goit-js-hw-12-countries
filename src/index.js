@@ -26,12 +26,14 @@ function onSearch (e) {
 
 function renderCountryCard (country){
     const markup = countryCardTpl(country);
-    refs.cardContainer.innerHTML = markup;
+    // refs.cardContainer.innerHTML = markup;
+    return refs.cardContainer.insertAdjacentHTML('beforeend',markup);
 }
 
 function renderCountryList(country){
     const listMarkup = countryListTpl(country);
-    refs.cardContainer.innerHTML = listMarkup;
+    // refs.cardContainer.innerHTML = listMarkup;
+    return refs.cardContainer.insertAdjacentHTML('beforeend',listMarkup);
 }
 
 function onFetchError(error) {
