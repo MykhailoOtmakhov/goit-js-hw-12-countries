@@ -14,8 +14,6 @@ const refs ={
 } 
 
 refs.queryText.addEventListener('input',debounce(onSearch,500))
-refs.queryText.value = ""
-
 function onSearch (e) {
         e.preventDefault();
         const searchQuery = e.target.value.trim();
@@ -26,13 +24,11 @@ function onSearch (e) {
 
 function renderCountryCard (country){
     const markup = countryCardTpl(country);
-    // refs.cardContainer.innerHTML = markup;
     return refs.cardContainer.insertAdjacentHTML('beforeend',markup);
 }
 
 function renderCountryList(country){
     const listMarkup = countryListTpl(country);
-    // refs.cardContainer.innerHTML = listMarkup;
     return refs.cardContainer.insertAdjacentHTML('beforeend',listMarkup);
 }
 
